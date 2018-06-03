@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>爱心榜</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../Content/Css/Lstyles.css" />
+</head>
+<body>
+    <div id="App">
+        <!--head-->
+        <div class="head">
+            <div class="banner_bg">
+                <img src="~/Content/Image/banner_bg.jpg" />
+            </div>
+            <div class="row">
+                <!--爱心大于财富,台商助力微笑儿童-->
+                <!--img-->
+                <div class="title_img">
+                    <img src="~/Content/Image/head_title.png" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 wing">
+                    <div><small>{{Sourse.AllMemberCount}}</small></div>
+                    <div>参与人数</div>
+                </div>
+                <div class="col-md-4">
+                    <!--<span class="demo-Circle-inner" style="font-size:24px">{{Sourse.CompletePercent}}%</span>-->
+                    <div class="circleChart" id="2" data-value="77"></div>
+
+                </div>
+                <div class="col-md-4 wing">
+                    <div><small>214</small></div>
+                    <div>参与团队</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="total_bg">目标总里程{{Sourse.TagetTotal}}KM</div>
+            </div>
+        </div>
+
+        <div class="body">
+            <!--switch-->
+            <div class="tab_btn switch">
+                <button class="btn select_btn" v-on:click="Switch(1,$event)" type="button">团队</button>
+                <button class="btn" v-on:click="Switch(0,$event)" type="button">个人</button>
+            </div>
+            <div v-show="ShowFlag">
+                <table>
+                    <tbody>
+                        <tr v-for="(item,index) in Sourse.Teams" :class="'ranking ranking-'+ (index+1)">
+                            <td class="index">
+                                <span class="badge">
+                                    {{index+1}}
+                                </span>
+                            </td>
+                            <td class="">{{item.name}}</td>
+                            <td class="">{{item.total}}KM</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div v-show="!ShowFlag">
+                <table>
+                    <tbody>
+                        <tr v-for="(item,index) in Sourse.TopMembers" :class="'ranking ranking-'+ (index+1)">
+                            <td class="index">
+                                <span class="badge">
+                                    {{index+1}}
+                                </span>
+                            </td>
+                            <td class="">
+                                <span class="headimg">
+                                    <img :src="GetUserImage(item.image,item.gender)" />
+                                </span>
+                            </td>
+                            <td class="">{{item.name}}</td>
+                            <td class="">{{item.total}}KM</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="foot">
+            <div class="tab_btn">
+                <button class="btn" type="button" @@click="ShowDescription">活动规则</button>
+                <button class="btn" type="button">立即报名</button>
+            </div>
+            <div class="foot-logo">
+                <img src="~/Content/Image/sub_logo_02.jpg" />
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/vue.min.js"></script>
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/circle-progress.min.js"></script>
+
+
+    <script type="text/javascript">
+        new Vue({
+            el: '#App',
+            data: {
+                Sourse: {
+                    TeamCount: 0,
+                    MemberCount: 0,
+                    TagetTotal: 0,
+                    CompleteTotal: 0.0000,
+                    CompletePercent: 0,
+                    Teams: [],
+                    TopMembers: [],
+                    AllMemberCount: 0,
+                    SourseUrl: ''
+                },
+                ShowFlag: 1,
+                Default: {
+                    HeadImage: {
+                        0: '../Content/Image/default_man.png',
+                        1: '../Content/Image/default_woman.png',
+                    }
+                }
+            },
+            methods: {
+                GetUserImage: function (image, gender) {
+                    if (image) {
+                        return image;
+                    }
+                    return this.Default.HeadImage[gender];
+                },
+                Switch: function (flag, event) {
+                    $(event.target).addClass('select_btn').siblings('.btn').removeClass('select_btn');
+                    this.ShowFlag = flag;
+                },
+                ShowDescription() {
+
+                }
+            },
+            created: function () {
+                //$.ajax({
+                //    type: "GET",
+                //    url: "test.json",
+                //    dataType: "json",
+                //    success: function (data) {
+                //        console.log(data);
+                //    },
+                //    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                //        console.log(textStatus);
+                //        console.log(errorThrown);
+                //    },
+                //    beforeSend: function () {
+                //        //loading
+                //    },
+                //    complete: function () {
+                //        //no loading
+                //    }
+                //});
+                var json = '{"TagetTotal":100000.0,"CompleteTotal":5866.56,"CompletePercent":0.0587,"Teams":[{"name":"同济大学附属同济医院","total":567.96},{"name":"浦东新区卫生计生委","total":471.05},{"name":"上海中冶医院","total":368.85},{"name":"宝山区卫生计生委","total":362.27},{"name":"静安区卫生计生委","total":356.0},{"name":"杨浦区卫生计生委","total":282.07},{"name":"闵行区卫生计生委","total":251.33},{"name":"松江区卫生计生委","total":226.88},{"name":"上海市中医医院","total":182.87},{"name":"上海市第六人民医院东院","total":178.92},{"name":"上海市第六人民医院","total":159.53},{"name":"中国福利会国际和平妇幼保健院","total":137.8},{"name":"黄浦区卫生计生委","total":134.01},{"name":"普陀区卫生计生委","total":129.65},{"name":"青浦区卫生计生委","total":128.08},{"name":"上海中医药大写附属曙光医院","total":123.14},{"name":"华东医院","total":115.18},{"name":"复旦大学附属妇产科医院","total":111.32},{"name":"复旦大学附属肿瘤医院","total":96.32},{"name":"复旦大学附属华山医院","total":95.19},{"name":"上海交通大学医学院附属新华医院","total":91.31},{"name":"上海市第十人民医院","total":78.63},{"name":"徐汇区卫生计生委","total":77.76},{"name":"虹口区卫生计生委","total":71.1},{"name":"复旦大学附属儿科医院","total":69.91},{"name":"奉贤区卫生计生委","total":68.69},{"name":"上海市皮肤病医院","total":63.97},{"name":"上海市疾病预防控制中心","total":63.36},{"name":"复旦大学附属中山医院","total":53.87},{"name":"上海市血液中心","total":50.49},{"name":"上海交通大学医学院附属第九人民医院","total":48.37},{"name":"上海市肿瘤研究所","total":47.1},{"name":"上海市胸科医院","total":46.3},{"name":"上海交通大学医学院附属瑞金医院","total":43.91},{"name":"其他","total":43.06},{"name":"上海中医药大学附属岳阳中西医结合医院","total":38.6},{"name":"上海市肺科医院","total":36.04},{"name":"上海市精神卫生中心","total":34.46},{"name":"上海市医疗急救中心","total":34.2},{"name":"上海市儿童医院","total":32.73},{"name":"上海市第一人民医院","total":29.76},{"name":"上海市公共卫生临床中心","total":24.95},{"name":"上海交通大学医学院附属仁济医院","total":23.52},{"name":"上海市医学科学技术情报研究所","total":23.35},{"name":"金山区卫生计生委","total":23.19},{"name":"上海市卫生和计划生育委员会监督所","total":22.81},{"name":"上海市第一妇婴保健院","total":22.11},{"name":"中国疾病预防控制中心寄生虫病预防控制所","total":20.13},{"name":"上海市临床检验中心","total":19.59},{"name":"上海市医事团体联合工会","total":9.1},{"name":"嘉定区卫生计生委","total":8.99},{"name":"上海市卫生和计划生育委员会机关","total":5.23},{"name":"上海邮电医院","total":3.39},{"name":"上海中医药大学附属龙华医院","total":3.1},{"name":"上海市质子重离子医院","total":3.04},{"name":"复旦大学附属眼耳鼻喉科医院","total":3.02}],"TopMembers":[{"total":37.32,"headimg":null,"name":"徐瑾","gender":0},{"total":36.03,"headimg":"/upload/3686e0b9b7fb4dafbd97f923bb028d7c.png","name":"林玲","gender":0},{"total":30.73,"headimg":null,"name":"杨华","gender":0},{"total":26.58,"headimg":"/upload/57fceb8e811346cf9a2524deba05d08e.png","name":"张贇","gender":0},{"total":24.13,"headimg":"/upload/57fceb8e811346cf9a2524deba05d08e.png","name":"张贇","gender":0},{"total":23.82,"headimg":null,"name":"饶琳","gender":0},{"total":21.74,"headimg":null,"name":"王聪","gender":0},{"total":21.5,"headimg":"/upload/d96205f71a724f78940c55151b9df0cd.jpg","name":"顾旻","gender":0},{"total":21.32,"headimg":"/upload/d7326983488441efa61f48c3aa5dcebb.png","name":"任凤东","gender":0},{"total":20.63,"headimg":"/upload/7acced54b2e84612a676511a4b143723.png","name":"晋梦迪","gender":0},{"total":19.16,"headimg":null,"name":"刘奇","gender":0},{"total":19.1,"headimg":null,"name":"王贺丽","gender":0},{"total":17.46,"headimg":null,"name":"陈云燕","gender":0},{"total":15.94,"headimg":"/upload/bde935abddcd4fbe9562f63dc9c06b31.jpg","name":"张汐","gender":0},{"total":15.29,"headimg":null,"name":"黄海旻","gender":0},{"total":14.32,"headimg":null,"name":"王艺蓓","gender":0},{"total":13.94,"headimg":null,"name":"李亚梅","gender":0},{"total":13.91,"headimg":null,"name":"殷膺","gender":0},{"total":13.79,"headimg":null,"name":"罗瑞春","gender":0},{"total":13.7,"headimg":"/upload/a6604d343e6245068e161e263b0ca0af.jpg","name":"洪亮","gender":0},{"total":13.07,"headimg":null,"name":"徐燕","gender":0},{"total":13.04,"headimg":null,"name":"胡笑","gender":0},{"total":13.0,"headimg":null,"name":"沈禹","gender":0},{"total":12.66,"headimg":"/upload/37a4846876b74a2cbde552c4da7aaca6.jpg","name":"刘卫华","gender":0},{"total":12.31,"headimg":null,"name":"韩微","gender":0},{"total":12.24,"headimg":"/upload/d6895a0ed45e43d180a6e511a35c7b5f.jpg","name":"廖巧","gender":0},{"total":12.21,"headimg":"/upload/6f810be254314881a051aa6dd2fd5d55.png","name":"曹燕勤","gender":0},{"total":12.16,"headimg":"/upload/56b05c25082140f4baf301af10560299.png","name":"陶艳菊","gender":0},{"total":12.11,"headimg":"/upload/184c9f855a594013aa2d8b13fbf203a1.png","name":"崔勇平","gender":0},{"total":12.08,"headimg":"/upload/90109d901222406cb5070862fddbe616.jpg","name":"方小兵","gender":0},{"total":11.62,"headimg":null,"name":"沈禹","gender":0},{"total":11.48,"headimg":null,"name":"王成丽","gender":0},{"total":11.39,"headimg":null,"name":"方洁瑜","gender":0},{"total":11.33,"headimg":null,"name":"杨敏","gender":0},{"total":11.32,"headimg":null,"name":"蔡佳蕴","gender":0},{"total":11.16,"headimg":null,"name":"施昊","gender":0},{"total":11.13,"headimg":"/upload/10bb1e4908a0451e92a832641637d76a.jpg","name":"沈鸣凤","gender":0},{"total":11.11,"headimg":null,"name":"焦亚丽","gender":0},{"total":11.03,"headimg":"/upload/2eceb9e374db448394c40cef8fefc50b.jpg","name":"张铮","gender":0},{"total":10.91,"headimg":"/upload/b21d4ac18af04eeb9f0750136f723ff7.png","name":"何振宇","gender":0},{"total":10.83,"headimg":null,"name":"胡蕾","gender":0},{"total":10.77,"headimg":"/upload/be5e032f51014d6f9b5a89058a6cd63e.png","name":"朱虹","gender":0},{"total":10.7,"headimg":"/upload/1aaf3a2cdfea4ab09d796d20a33c993c.jpg","name":"吴晓芹","gender":0},{"total":10.62,"headimg":null,"name":"姚丽","gender":0},{"total":10.6,"headimg":null,"name":"龚德胜","gender":0},{"total":10.56,"headimg":null,"name":"李项城","gender":0},{"total":10.54,"headimg":"/upload/0f400901e4cb4d4fbddd3eed634fa0be.png","name":"耿涛","gender":0},{"total":10.49,"headimg":null,"name":"李锦军","gender":0},{"total":10.47,"headimg":"/upload/c51cd465de6849d8928625ca4e3e6779.png","name":"沈红梅","gender":0},{"total":10.47,"headimg":"/upload/b221f20d488646eabd362b1a09a454aa.png","name":"王文晶","gender":0},{"total":10.46,"headimg":"/upload/4e18bff085144e8ea156b8be059bca7a.png","name":"俞雷","gender":0},{"total":10.46,"headimg":"/upload/44f92ffb02a34891a7800afca0669e6e.jpg","name":"杨月明","gender":0},{"total":10.44,"headimg":null,"name":"蒋平","gender":0},{"total":10.38,"headimg":null,"name":"陆晓燕","gender":0},{"total":10.38,"headimg":null,"name":"姚珍珍","gender":0},{"total":10.36,"headimg":null,"name":"陈立永","gender":0},{"total":10.35,"headimg":"/upload/d3277389185b403bb7ca79c7687f3ee3.png","name":"王俊灵","gender":0},{"total":10.33,"headimg":"/upload/aa29ca6d2c79458dbefd044bf7164b41.png","name":"范燕琴","gender":0},{"total":10.32,"headimg":null,"name":"王纯刚","gender":0},{"total":10.32,"headimg":null,"name":"钱晨","gender":0},{"total":10.32,"headimg":null,"name":"虞瑾华","gender":0},{"total":10.24,"headimg":null,"name":"张斌","gender":0},{"total":10.23,"headimg":"/upload/e40a273dfe9f4f53b9b3bf405bcbb318.png","name":"崔宇辉","gender":0},{"total":10.23,"headimg":"/upload/d52b5539c4c141e18410214018282307.jpg","name":"李森","gender":0},{"total":10.23,"headimg":null,"name":"饶志涛","gender":0},{"total":10.22,"headimg":null,"name":"陈瑾芳","gender":0},{"total":10.21,"headimg":"/upload/e7729a5291e345ed83573c87ae2fcb72.png","name":"刘凤武","gender":0},{"total":10.21,"headimg":null,"name":"裘俊杰","gender":0},{"total":10.18,"headimg":null,"name":"丁威","gender":0},{"total":10.16,"headimg":null,"name":"周福生","gender":0},{"total":10.16,"headimg":"/upload/e7e063dc07a04a8ba24b81f502f48884.jpg","name":"张叶琴","gender":0},{"total":10.15,"headimg":"/upload/9b576d9f83454e00a5d2824917732cc7.png","name":"黄剑","gender":0},{"total":10.15,"headimg":"/upload/4257e8d8efc64446b41a3629bfc1ecc1.png","name":"郭辉","gender":0},{"total":10.14,"headimg":"/upload/7583937823f14cdf9bb81bcfa1bdebe9.png","name":"胡红卫","gender":0},{"total":10.14,"headimg":null,"name":"张玺炜","gender":0},{"total":10.12,"headimg":"/upload/c726f42aeda54149b03bdce507393361.png","name":"张凌凌","gender":0},{"total":10.12,"headimg":"/upload/ba9b31099ab143009007061c936dabf3.png","name":"刘裕英","gender":0},{"total":10.12,"headimg":null,"name":"严峰","gender":0},{"total":10.11,"headimg":null,"name":"付玉伟","gender":0},{"total":10.1,"headimg":null,"name":"龚朱","gender":0},{"total":10.1,"headimg":null,"name":"周丽","gender":0},{"total":10.1,"headimg":null,"name":"费晶","gender":0},{"total":10.09,"headimg":"/upload/277108050450452c84d9c9780da98409.jpg","name":"谢俊杰","gender":0},{"total":10.09,"headimg":"/upload/1c03e2ebd17a41488723aa3d18c47863.jpg","name":"郭杰","gender":0},{"total":10.08,"headimg":"/upload/37fe844c3a4c4f6887a29aa95a3e3bad.jpg","name":"朱红","gender":0},{"total":10.08,"headimg":null,"name":"张烨","gender":0},{"total":10.08,"headimg":null,"name":"侯衍栋","gender":0},{"total":10.07,"headimg":null,"name":"孙晓云","gender":0},{"total":10.06,"headimg":"/upload/3672f66dc3d7405ea1c80c89c2f3683e.png","name":"俞洁","gender":0},{"total":10.06,"headimg":null,"name":"陈雪雪","gender":0},{"total":10.06,"headimg":"/upload/490675a40b6f4ebdb3458020c0892b43.jpg","name":"王亚虹","gender":0},{"total":10.06,"headimg":null,"name":"丁宁","gender":0},{"total":10.06,"headimg":null,"name":"马立元","gender":0},{"total":10.06,"headimg":"/upload/3f83247ec58d46e090a0b6a31e7582cd.png","name":"沈陈","gender":0},{"total":10.06,"headimg":"/upload/4d104f80c8af40e880d857d24ccfa6d2.png","name":"马莉","gender":0},{"total":10.05,"headimg":"/upload/b5863530ebf44db6add94a0da9da3fd8.png","name":"赵慢慢","gender":0},{"total":10.05,"headimg":null,"name":"刘一力","gender":0},{"total":10.05,"headimg":null,"name":"龚邦东","gender":0},{"total":10.05,"headimg":null,"name":"施骏","gender":0},{"total":10.05,"headimg":"/upload/05512ce2328a453ea0688d44b62fd609.png","name":"赵亦俊","gender":0}],"AllMemberCount":4147}';
+                this.Sourse = JSON.parse(json);
+            },
+            mounted: function () {
+                var self = this;
+                $('.circleChart').circleProgress({
+                    value: self.Sourse.CompletePercent,
+                    size: 100,
+                    fill: {
+                        gradient: ["red", "orange"]
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
