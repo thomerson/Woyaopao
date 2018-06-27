@@ -13,10 +13,13 @@ namespace Thomerson.Woyaopao.Fuban.Core
     {
         public static SourseData GetDataFromSource()
         {
+            var result = string.Empty;
             try
             {
                 var client = new HttpClient();
-                var result = client.GetStringAsync(WoyaopaoConfig.Woyaopao_Fuban_DataUri).Result;
+                result = client.GetStringAsync(WoyaopaoConfig.Woyaopao_Fuban_DataUri).Result;
+
+                result = ReplaceSpecialChar4Json(result);
                 //Logger.Default.Info(result);
                 var model = JsonConvert.DeserializeObject<SourseData>(result);
                 return model;
@@ -24,6 +27,7 @@ namespace Thomerson.Woyaopao.Fuban.Core
             catch (Exception ex)
             {
                 Logger.Default.Error(ex);
+                Logger.Default.Info(result);
                 return null;
             }
 
@@ -192,6 +196,27 @@ namespace Thomerson.Woyaopao.Fuban.Core
                 Console.WriteLine("Error:" + ex.Message);
                 Logger.Default.Error(ex);
             }
+        }
+
+        private static string ReplaceSpecialChar4Json(string json)
+        {
+            //if (json == null) { return json; }
+            //if (json.Contains("\\"))
+            //{
+            //    json = json.Replace("\\", "\\\\");
+            //}
+            //if (json.Contains("\'"))
+            //{
+            //    json = json.Replace("\'", "\\\'");
+            //}
+            //if (json.Contains("\""))
+            //{
+            //    json = json.Replace("\"", "\\\"");
+            //}
+            ////去掉字符串的回车换行符
+            //json = System.Text.RegularExpressions.Regex.Replace(json, @"[\n\r]", "");
+            //json = json.Trim();
+            return json;
         }
     }
 }
