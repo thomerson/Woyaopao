@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Thomerson.Woyaopao.Fuban.Core.Model
+namespace Thomerson.Woyaopao.Core.Model
 {
     public class TeamsInfo 
     {

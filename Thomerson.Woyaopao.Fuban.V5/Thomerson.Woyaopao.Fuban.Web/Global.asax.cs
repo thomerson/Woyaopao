@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Thomerson.Woyaopao.Fuban.Core;
+using Thomerson.Woyaopao.Core;
 
 namespace Thomerson.Woyaopao.Fuban.Web
 {

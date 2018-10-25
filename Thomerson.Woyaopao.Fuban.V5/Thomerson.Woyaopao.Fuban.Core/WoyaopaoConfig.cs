@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 
 
-namespace Thomerson.Woyaopao.Fuban.Core
+namespace Thomerson.Woyaopao.Core
 {
     public class WoyaopaoConfig
     {

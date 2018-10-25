@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9F5D9AF1-9DEB-40C3-A7FD-2194FB1C34F4}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Thomerson.Woyaopao.Fuban.Test</RootNamespace>
-    <AssemblyName>Thomerson.Woyaopao.Fuban.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <ProjectGuid>{9BA74360-C444-4394-9FA8-AE185010E37E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Thomerson.Woyaopao.Service</RootNamespace>
+    <AssemblyName>Thomerson.Woyaopao.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -38,29 +37,55 @@
     </Reference>
     <Reference Include="StackExchange.Redis, Version=1.2.6.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fuban.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Fuban.Designer.cs">
+      <DependentUpon>Fuban.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="ProjectInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Uninstall.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Install.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Thomerson.Woyaopao.Fuban.Core\Thomerson.Woyaopao.Fuban.Core.csproj">
-      <Project>{788E7D77-7A6A-43A2-855A-7ECBE39A0BD0}</Project>
-      <Name>Thomerson.Woyaopao.Fuban.Core</Name>
+    <ProjectReference Include="..\Thomerson.Woyaopao.Fuban.Core\Thomerson.Woyaopao.Core.csproj">
+      <Project>{788e7d77-7a6a-43a2-855a-7ecbe39a0bd0}</Project>
+      <Name>Thomerson.Woyaopao.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

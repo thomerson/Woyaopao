@@ -5,11 +5,11 @@ VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thomerson.Woyaopao.Fuban.Web", "Thomerson.Woyaopao.Fuban.Web\Thomerson.Woyaopao.Fuban.Web.csproj", "{3778487B-DCEE-4FF9-9531-6B535D025C36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thomerson.Woyaopao.Fuban.Core", "Thomerson.Woyaopao.Fuban.Core\Thomerson.Woyaopao.Fuban.Core.csproj", "{788E7D77-7A6A-43A2-855A-7ECBE39A0BD0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thomerson.Woyaopao.Core", "Thomerson.Woyaopao.Fuban.Core\Thomerson.Woyaopao.Core.csproj", "{788E7D77-7A6A-43A2-855A-7ECBE39A0BD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thomerson.Woyaopao.Fuban.Test", "Thomerson.Woyaopao.Fuban.Test\Thomerson.Woyaopao.Fuban.Test.csproj", "{9F5D9AF1-9DEB-40C3-A7FD-2194FB1C34F4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thomerson.Woyaopao.Test", "Thomerson.Woyaopao.Fuban.Test\Thomerson.Woyaopao.Test.csproj", "{9F5D9AF1-9DEB-40C3-A7FD-2194FB1C34F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thomerson.Woyaopao.Fuban.Service", "Thomerson.Woyaopao.Fuban.Service\Thomerson.Woyaopao.Fuban.Service.csproj", "{9BA74360-C444-4394-9FA8-AE185010E37E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thomerson.Woyaopao.Service", "Thomerson.Woyaopao.Fuban.Service\Thomerson.Woyaopao.Service.csproj", "{9BA74360-C444-4394-9FA8-AE185010E37E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

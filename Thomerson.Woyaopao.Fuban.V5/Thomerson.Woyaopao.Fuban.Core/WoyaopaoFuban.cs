@@ -4,10 +4,10 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Thomerson.Woyaopao.Fuban.Core.Model;
+using Thomerson.Woyaopao.Core.Model;
 using Newtonsoft.Json;
 
-namespace Thomerson.Woyaopao.Fuban.Core
+namespace Thomerson.Woyaopao.Core
 {
     public class WoyaopaoFuban
     {

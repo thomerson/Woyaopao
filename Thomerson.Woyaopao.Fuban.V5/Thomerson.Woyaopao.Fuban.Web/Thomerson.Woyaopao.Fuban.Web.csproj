@@ -159,9 +159,9 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Thomerson.Woyaopao.Fuban.Core\Thomerson.Woyaopao.Fuban.Core.csproj">
+    <ProjectReference Include="..\Thomerson.Woyaopao.Fuban.Core\Thomerson.Woyaopao.Core.csproj">
       <Project>{788E7D77-7A6A-43A2-855A-7ECBE39A0BD0}</Project>
-      <Name>Thomerson.Woyaopao.Fuban.Core</Name>
+      <Name>Thomerson.Woyaopao.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

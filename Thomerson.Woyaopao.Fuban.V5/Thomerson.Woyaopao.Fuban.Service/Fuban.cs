@@ -8,7 +8,7 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
-using Thomerson.Woyaopao.Fuban.Core;
+using Thomerson.Woyaopao.Core;
 
 namespace Thomerson.Woyaopao.Fuban.Service
 {

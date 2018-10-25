@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Thomerson.Woyaopao.Fuban.Core
+namespace Thomerson.Woyaopao.Core
 {
     public class AliRedisClient
     {
