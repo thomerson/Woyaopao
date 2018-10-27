@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thomerson.Woyaopao.Test", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thomerson.Woyaopao.Service", "Thomerson.Woyaopao.Fuban.Service\Thomerson.Woyaopao.Service.csproj", "{9BA74360-C444-4394-9FA8-AE185010E37E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thomerson.Woyaopao.WQKHospital", "Thomerson.Woyaopao.WQKHospital\Thomerson.Woyaopao.WQKHospital.csproj", "{2F174C72-82F4-4817-A2A6-4824CDD25F2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{9BA74360-C444-4394-9FA8-AE185010E37E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BA74360-C444-4394-9FA8-AE185010E37E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BA74360-C444-4394-9FA8-AE185010E37E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F174C72-82F4-4817-A2A6-4824CDD25F2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F174C72-82F4-4817-A2A6-4824CDD25F2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F174C72-82F4-4817-A2A6-4824CDD25F2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F174C72-82F4-4817-A2A6-4824CDD25F2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

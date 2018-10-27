@@ -42,6 +42,7 @@
             this.Woyaopao_Fuban.Description = "富邦(我要跑)定时抓取数据服务";
             this.Woyaopao_Fuban.ServiceName = "Woyaopao_Fuban";
             this.Woyaopao_Fuban.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
+            this.Woyaopao_Fuban.AfterInstall += new System.Configuration.Install.InstallEventHandler(this.Woyaopao_Fuban_AfterInstall);
             // 
             // ProjectInstaller
             // 

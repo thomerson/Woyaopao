@@ -15,5 +15,10 @@ namespace Thomerson.Woyaopao.Fuban.Service
         {
             InitializeComponent();
         }
+
+        private void Woyaopao_Fuban_AfterInstall(object sender, InstallEventArgs e)
+        {
+
+        }
     }
 }

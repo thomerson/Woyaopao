@@ -34,35 +34,27 @@ namespace Thomerson.Woyaopao.Core
             }
         }
 
-        public static string Redis_Fuban_SourseDataKey
+        public static string Redis_SourseDataKey
         {
             get
             {
-                return ConfigurationManager.AppSettings["Redis_Fuban_SourseDataKey"].ToString();
+                return ConfigurationManager.AppSettings["Redis_SourseDataKey"].ToString();
             }
         }
 
-        public static string Woyaopao_Fuban_DataUri
+        public static string Woyaopao_DataUri
         {
             get
             {
-                return ConfigurationManager.AppSettings["Woyaopao_Fuban_DataUri"].ToString();
+                return ConfigurationManager.AppSettings["Woyaopao_DataUri"].ToString();
             }
         }
 
-        public static int Woyaopao_Fuban_TotalTarget
+        public static string Redis_UserId
         {
             get
             {
-                return int.Parse(ConfigurationManager.AppSettings["Woyaopao_Fuban_TotalTarget"]);
-            }
-        }
-
-        public static string Redis_Fuban_UserId
-        {
-            get
-            {
-                return ConfigurationManager.AppSettings["Redis_Fuban_UserId"].ToString();
+                return ConfigurationManager.AppSettings["Redis_UserId"].ToString();
             }
         }
 
@@ -70,44 +62,44 @@ namespace Thomerson.Woyaopao.Core
         /// <summary>
         /// redis 设置过期时间
         /// </summary>
-        public static int Redis_Fuban_Overtime
+        public static int Redis_Overtime
         {
             get
             {
-                return int.Parse(ConfigurationManager.AppSettings["Redis_Fuban_Overtime"]);
+                return int.Parse(ConfigurationManager.AppSettings["Redis_Overtime"]);
             }
         }
 
         /// <summary>
         /// 获取sourse的间隔时间
         /// </summary>
-        public static int Woyaopao_Fuban_Sourse_Timespan
+        public static int Woyaopao_Sourse_Timespan
         {
             get
             {
-                return int.Parse(ConfigurationManager.AppSettings["Woyaopao_Fuban_Sourse_Timespan"]);
+                return int.Parse(ConfigurationManager.AppSettings["Woyaopao_Sourse_Timespan"]);
             }
         }
 
         /// <summary>
         /// 文件(头像)地址
         /// </summary>
-        public static string Woyaopao_Fuban_SourseUrl
+        public static string Woyaopao_SourseUrl
         {
             get
             {
-                return ConfigurationManager.AppSettings["Woyaopao_Fuban_SourseUrl"];
+                return ConfigurationManager.AppSettings["Woyaopao_SourseUrl"];
             }
         }
 
         /// <summary>
         /// 报名链接
         /// </summary>
-        public static string Woyaopao_Fuban_ApplyUrl
+        public static string Woyaopao_ApplyUrl
         {
             get
             {
-                return ConfigurationManager.AppSettings["Woyaopao_Fuban_ApplyUrl"];
+                return ConfigurationManager.AppSettings["Woyaopao_ApplyUrl"];
             }
         }
 

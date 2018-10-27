@@ -18,7 +18,7 @@ namespace Thomerson.Woyaopao.Fuban.Web
             //clean cache
             if (WoyaopaoConfig.UseRedis)
             {
-                AliRedisClient.getRedisConn().GetDatabase().StringSet(WoyaopaoConfig.Redis_Fuban_SourseDataKey, string.Empty);
+                AliRedisClient.getRedisConn().GetDatabase().StringSet(WoyaopaoConfig.Redis_SourseDataKey, string.Empty);
             }
         }
     }

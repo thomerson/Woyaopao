@@ -70,14 +70,14 @@ namespace Thomerson.Woyaopao.Fuban.Service
         {
             try
             {
-                var sourse = WoyaopaoFuban.GetDataFromSource();
+                //var sourse = WoyaopaoFuban.GetDataFromSource();
 
-                var entity = WoyaopaoFuban.Sourse2Transfer(sourse);
+                //var entity = WoyaopaoFuban.Sourse2Transfer(sourse);
 
-                var json = JsonConvert.SerializeObject(entity);
+                //var json = JsonConvert.SerializeObject(entity);
 
-                var sourseKey = WoyaopaoConfig.Redis_Fuban_SourseDataKey;
-                AliRedisClient.getRedisConn().GetDatabase().StringSet(sourseKey, json);
+                //var sourseKey = WoyaopaoConfig.Redis_Fuban_SourseDataKey;
+                //AliRedisClient.getRedisConn().GetDatabase().StringSet(sourseKey, json);
 
             }
             catch (Exception ex)

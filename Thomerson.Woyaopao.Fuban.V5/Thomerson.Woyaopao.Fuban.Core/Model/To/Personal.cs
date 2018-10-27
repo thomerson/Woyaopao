@@ -24,13 +24,4 @@ namespace Thomerson.Woyaopao.Core.Model
         //public string applypeoplename { get; set; }
     }
 
-    /// <summary>
-    /// show on page
-    /// </summary>
-    public class PersonShowOnPage : PersonBase
-    {
-        //public int order { get; set; }
-
-        public double total { get; set; }
-    }
 }

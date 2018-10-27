@@ -1,23 +1,32 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
+using Thomerson.Woyaopao.Core;
 using Thomerson.Woyaopao.Core.Model;
-using Newtonsoft.Json;
 
-namespace Thomerson.Woyaopao.Core
+namespace Thomerson.Woyaopao.Fuban
 {
-    public class WoyaopaoFuban
+    public class FubanPlatform : WoyaopaoConfig
     {
+        public static int TotalTarget
+        {
+            get
+            {
+                return int.Parse(ConfigurationManager.AppSettings["Woyaopao_Fuban_TotalTarget"]);
+            }
+        }
+
         public static SourseData GetDataFromSource()
         {
             var result = string.Empty;
             try
             {
                 var client = new HttpClient();
-                result = client.GetStringAsync(WoyaopaoConfig.Woyaopao_Fuban_DataUri).Result;
+                result = client.GetStringAsync(Woyaopao_DataUri).Result;
 
                 result = ReplaceSpecialChar4Json(result);
                 //Logger.Default.Info(result);
@@ -47,7 +56,7 @@ namespace Thomerson.Woyaopao.Core
 
                 var teaminfos = sourse.data.teamsInfo;
 
-                var top100 = new List<PersonShowOnPage>();
+                var top100 = new List<MemberInfo>();
 
                 var total = runinfo.Sum(s => s.distance);
 
@@ -67,7 +76,7 @@ namespace Thomerson.Woyaopao.Core
                     {
                         if (top100.Count < 100)
                         {
-                            top100.Add(new PersonShowOnPage()
+                            top100.Add(new MemberInfo()
                             {
                                 //order = i + 1,
                                 name = user?.name,
@@ -85,12 +94,12 @@ namespace Thomerson.Woyaopao.Core
                     }
                 }
 
-                return new DataTransfer()
+                return new PageInfo()
                 {
                     CompleteTotal = Math.Round(total, 0),
                     Teams = teams.Select(s => new Team() { traminfoid = s.Key, name = s.Value?.name, total = Math.Round(s.Value.total, 2) }).OrderByDescending(o => o.total).ToList(),
                     TopMembers = top100,
-                    AllMemberCount = userinfos.Count,
+                    TotalMember = userinfos.Count,
                     AllTeamCount = teams.Count()
                 };
 
@@ -102,10 +111,9 @@ namespace Thomerson.Woyaopao.Core
             }
         }
 
-
         public static PersonInfoInRedis GetPersonInfo(string userid, List<UserInfo> userinfos)
         {
-            var userKey = string.Format(WoyaopaoConfig.Redis_Fuban_UserId, userid);
+            var userKey = string.Format(Redis_UserId, userid);
             PersonInfoInRedis person = null;
 
             var user = string.Empty;
@@ -143,7 +151,7 @@ namespace Thomerson.Woyaopao.Core
         {
 
             //每30秒执行一次  
-            var timespan = WoyaopaoConfig.Woyaopao_Fuban_Sourse_Timespan;
+            var timespan = Woyaopao_Sourse_Timespan;
             var t = new System.Timers.Timer(timespan);
 
             //设置是执行一次（false）还是一直执行(true)；  
@@ -164,13 +172,13 @@ namespace Thomerson.Woyaopao.Core
             try
             {
                 Console.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " start get sourse data");
-                var sourse = WoyaopaoFuban.GetDataFromSource();
+                var sourse = GetDataFromSource();
                 Console.WriteLine("geted");
-                var entity = WoyaopaoFuban.Sourse2Transfer(sourse);
+                var entity = Sourse2Transfer(sourse);
                 Console.WriteLine("transfer");
                 var json = JsonConvert.SerializeObject(entity);
                 Console.WriteLine("write into redis");
-                var sourseKey = WoyaopaoConfig.Redis_Fuban_SourseDataKey;
+                var sourseKey = Redis_SourseDataKey;
                 AliRedisClient.getRedisConn().GetDatabase().StringSet(sourseKey, json);
                 Console.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " end");
 
@@ -188,7 +196,7 @@ namespace Thomerson.Woyaopao.Core
         {
             try
             {
-                var sourseKey = WoyaopaoConfig.Redis_Fuban_SourseDataKey;
+                var sourseKey = Redis_SourseDataKey;
                 var result = AliRedisClient.getRedisConn().GetDatabase().StringGet(sourseKey);
             }
             catch (Exception ex)
