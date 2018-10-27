@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Thomerson.Woyaopao.Core.Model;
+using Thomerson.Woyaopao.Model;
 
 namespace Thomerson.Woyaopao.Fuban
 {
-    public class PageInfo : DataTransfer
+    public class CustPageInfo : DataTransfer
     {
         /// <summary>
         /// 目标总里程

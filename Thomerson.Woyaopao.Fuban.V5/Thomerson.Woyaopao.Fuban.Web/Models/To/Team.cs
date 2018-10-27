@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Thomerson.Woyaopao.Core.Model
+namespace Thomerson.Woyaopao.Model
 {
 
     public class Team
@@ -13,5 +13,6 @@ namespace Thomerson.Woyaopao.Core.Model
         public string name { get; set; }
         public double total { get; set; }
         public string traminfoid { get; set; }
+        public int membertotal { get; set; }
     }
 }

@@ -13,6 +13,8 @@ namespace Thomerson.Woyaopao.WQKHospital
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            Core.Scheduler.Start("XQKHospital");
         }
     }
 }

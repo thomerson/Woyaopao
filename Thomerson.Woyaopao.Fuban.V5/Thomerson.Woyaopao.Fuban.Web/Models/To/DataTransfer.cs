@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Thomerson.Woyaopao.Core.Model
+namespace Thomerson.Woyaopao.Model
 {
     public class DataTransfer
     {
@@ -15,11 +15,11 @@ namespace Thomerson.Woyaopao.Core.Model
         /// </summary>
         public int TotalMember { get; set; }
 
-        public string SourseUrl
+        public string sourceUrl
         {
             get
             {
-                return WoyaopaoConfig.Woyaopao_SourseUrl;
+                return Core.WoyaopaoConfig.sourceUrl;
             }
         }
 
@@ -27,7 +27,7 @@ namespace Thomerson.Woyaopao.Core.Model
         {
             get
             {
-                return WoyaopaoConfig.Woyaopao_ApplyUrl;
+                return Core.WoyaopaoConfig.ApplyUrl;
             }
         }
 

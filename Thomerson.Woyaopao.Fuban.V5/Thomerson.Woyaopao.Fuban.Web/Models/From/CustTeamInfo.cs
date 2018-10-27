@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Thomerson.Woyaopao.Core.Model
+namespace Thomerson.Woyaopao.Model
 {
-    public class TeamsInfo 
+    public class CustTeamInfo
     {
         public string teamname { get; set; }
         public string traminfoid { get; set; }

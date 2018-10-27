@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Thomerson.Woyaopao.Core.Model
+namespace Thomerson.Woyaopao.Model
 {
     public class RunInfo
     {
@@ -12,10 +12,7 @@ namespace Thomerson.Woyaopao.Core.Model
         public string modeid { get; set; }
         public string updatetime { get; set; }
         public string userid { get; set; }
-        public string username { get; set; }
         public int usetime { get; set; }
         public string runtime { get; set; }
-
-
     }
 }

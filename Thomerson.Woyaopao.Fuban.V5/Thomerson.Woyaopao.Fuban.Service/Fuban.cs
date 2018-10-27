@@ -27,7 +27,7 @@ namespace Thomerson.Woyaopao.Fuban.Service
             base.CanPauseAndContinue = true;
 
             //每30秒执行一次  
-            var timespan = WoyaopaoConfig.Woyaopao_Fuban_Sourse_Timespan;
+            var timespan = WoyaopaoConfig.Woyaopao_source_Timespan;
             t = new System.Timers.Timer(timespan);
 
             //设置是执行一次（false）还是一直执行(true)；  
@@ -35,7 +35,7 @@ namespace Thomerson.Woyaopao.Fuban.Service
             //是否执行System.Timers.Timer.Elapsed事件；  
             t.Enabled = true;
             //到达时间的时候执行事件(theout方法)；  
-            t.Elapsed += new System.Timers.ElapsedEventHandler(SetSourse);
+            t.Elapsed += new System.Timers.ElapsedEventHandler(Setsource);
 
         }
 
@@ -66,18 +66,18 @@ namespace Thomerson.Woyaopao.Fuban.Service
             t.Stop();
         }
 
-        private void SetSourse(object source, System.Timers.ElapsedEventArgs e)
+        private void Setsource(object source, System.Timers.ElapsedEventArgs e)
         {
             try
             {
-                //var sourse = WoyaopaoFuban.GetDataFromSource();
+                //var source = WoyaopaoFuban.GetDataFromSource();
 
-                //var entity = WoyaopaoFuban.Sourse2Transfer(sourse);
+                //var entity = WoyaopaoFuban.source2Transfer(source);
 
                 //var json = JsonConvert.SerializeObject(entity);
 
-                //var sourseKey = WoyaopaoConfig.Redis_Fuban_SourseDataKey;
-                //AliRedisClient.getRedisConn().GetDatabase().StringSet(sourseKey, json);
+                //var sourceKey = WoyaopaoConfig.Redis_Fuban_sourceDataKey;
+                //AliRedisClient.getRedisConn().GetDatabase().StringSet(sourceKey, json);
 
             }
             catch (Exception ex)

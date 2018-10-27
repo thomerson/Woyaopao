@@ -9,12 +9,11 @@ namespace Thomerson.Woyaopao.Core
 {
     public class RequestJob : IJob
     {
-        public Task Execute(IJobExecutionContext context)
+        public void Execute(IJobExecutionContext context)
         {
-            return new Task(() =>
-            {
-                Logger.Default.Info("Hello at " + DateTime.Now.ToString());
-            });
+            var source = Woyaopao.WQKHospital.WQKHospital.GetDataFromSource();
+
+            //Logger.Default.Info("Hello at " + DateTime.Now.ToString());
         }
     }
 }

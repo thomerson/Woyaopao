@@ -5,7 +5,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Thomerson.Woyaopao.Core;
-using Thomerson.Woyaopao.Core.Model;
 
 namespace Thomerson.Woyaopao.Fuban.Web.Controllers
 {
@@ -17,36 +16,36 @@ namespace Thomerson.Woyaopao.Fuban.Web.Controllers
             return View();
         }
 
-        public ActionResult GetSourseData()
+        public ActionResult GetsourceData()
         {
             try
             {
-                var sourseFromRedis = false;
+                var sourceFromRedis = false;
                 if (WoyaopaoConfig.UseRedis)
                 {
-                    var result = AliRedisClient.getRedisConn().GetDatabase().StringGet(WoyaopaoConfig.Redis_SourseDataKey);
+                    var result = AliRedisClient.getRedisConn().GetDatabase().StringGet(WoyaopaoConfig.Redis_sourceDataKey);
                     if (string.IsNullOrWhiteSpace(result))
                     {
-                        var sourse = FubanPlatform.GetDataFromSource();
+                        var source = FubanPlatform.GetDataFromSource();
 
-                        var entity = FubanPlatform.Sourse2Transfer(sourse);
+                        var entity = FubanPlatform.source2Transfer(source);
                         var json = JsonConvert.SerializeObject(entity);
-                        AliRedisClient.getRedisConn().GetDatabase().StringSet(WoyaopaoConfig.Redis_SourseDataKey, json, new TimeSpan(WoyaopaoConfig.Woyaopao_Sourse_Timespan));
-                        return Json(new { SourseFromRedis = sourseFromRedis, Data = entity }, JsonRequestBehavior.AllowGet);
+                        AliRedisClient.getRedisConn().GetDatabase().StringSet(WoyaopaoConfig.Redis_sourceDataKey, json, new TimeSpan(WoyaopaoConfig.Woyaopao_source_Timespan));
+                        return Json(new { sourceFromRedis = sourceFromRedis, Data = entity }, JsonRequestBehavior.AllowGet);
                     }
                     else
                     {
-                        sourseFromRedis = true;
-                        var entity = JsonConvert.DeserializeObject<DataTransfer>(result);
-                        return Json(new { SourseFromRedis = sourseFromRedis, Data = entity }, JsonRequestBehavior.AllowGet);
+                        sourceFromRedis = true;
+                        var entity = JsonConvert.DeserializeObject<CustPageInfo>(result);
+                        return Json(new { sourceFromRedis = sourceFromRedis, Data = entity }, JsonRequestBehavior.AllowGet);
                     }
                 }
                 else
                 {
-                    var sourse = FubanPlatform.GetDataFromSource();
+                    var source = FubanPlatform.GetDataFromSource();
 
-                    var entity = FubanPlatform.Sourse2Transfer(sourse);
-                    return Json(new { SourseFromRedis = sourseFromRedis, Data = entity }, JsonRequestBehavior.AllowGet);
+                    var entity = FubanPlatform.source2Transfer(source);
+                    return Json(new { sourceFromRedis = sourceFromRedis, Data = entity }, JsonRequestBehavior.AllowGet);
                 }
             }
             catch (Exception ex)

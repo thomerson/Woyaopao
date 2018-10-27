@@ -29,25 +29,25 @@
             </div>
             <div class="row">
                 <div class="wing left">
-                    <div><small>{{Sourse.AllMemberCount}}</small></div>
+                    <div><small>{{source.AllMemberCount}}</small></div>
                     <div>参与人数</div>
                 </div>
                 <div id="indicatorContainerWrap">
                     <div class="rad-prg" id="indicatorContainer" style="height:120px;width:120px;"></div>
                     <div class="rad-cntnt">
-                        <div class="numNo">{{Sourse.CompletePercent}}%</div>
-                        <div style="font-size:18px;">{{Sourse.CompleteTotal}}km</div>
+                        <div class="numNo">{{source.CompletePercent}}%</div>
+                        <div style="font-size:18px;">{{source.CompleteTotal}}km</div>
                         <!--<div class="small">已完成里数</div>-->
                     </div>
                 </div>
 
                 <div class="wing right">
-                    <div><small>{{Sourse.AllTeamCount}}</small></div>
+                    <div><small>{{source.AllTeamCount}}</small></div>
                     <div>参与团队</div>
                 </div>
             </div>
             <div class="row">
-                <div class="total_bg">目标总里程{{Sourse.TagetTotal}}KM</div>
+                <div class="total_bg">目标总里程{{source.TagetTotal}}KM</div>
             </div>
         </div>
 
@@ -60,7 +60,7 @@
             <div v-show="ShowFlag">
                 <table>
                     <tbody>
-                        <tr v-for="(item,index) in Sourse.Teams" :class="'ranking ranking-'+ (index+1)">
+                        <tr v-for="(item,index) in source.Teams" :class="'ranking ranking-'+ (index+1)">
                             <td class="index">
                                 <span v-if="index==0">
                                     <img src="~/Content/Image/jp01.png" class="circle" />
@@ -84,7 +84,7 @@
             <div v-show="!ShowFlag">
                 <table>
                     <tbody>
-                        <tr v-for="(item,index) in Sourse.TopMembers" :class="'ranking ranking-'+ (index+1)">
+                        <tr v-for="(item,index) in source.TopMembers" :class="'ranking ranking-'+ (index+1)">
                             <td class="index">
                                 <span v-if="index==0">
                                     <img src="~/Content/Image/jp01.png" class="circle" />
@@ -115,7 +115,7 @@
         <div class="foot">
             <div class="tab_btn">
                 <button class="btn" type="button" v-on:click="ShowDescription">活动规则</button>
-                <a role="button" target="_blank" class="btn" :href="Sourse.ApplyUrl">立即报名</a>
+                <a role="button" target="_blank" class="btn" :href="source.ApplyUrl">立即报名</a>
             </div>
             <div class="foot-logo">
                 <img src="~/Content/Image/sub_logo_02.jpg" />
@@ -155,7 +155,7 @@
         new Vue({
             el: '#App',
             data: {
-                Sourse: {
+                source: {
                     TeamCount: 0,
                     MemberCount: 0,
                     TagetTotal: 0,
@@ -164,7 +164,7 @@
                     Teams: [],
                     TopMembers: [],
                     AllMemberCount: 0,
-                    SourseUrl: '',
+                    sourceUrl: '',
                     ApplyUrl: '',
                     AllTeamCount: 0
                 },
@@ -180,7 +180,7 @@
             methods: {
                 GetUserImage: function (image, gender) {
                     if (image) {
-                        return this.Sourse.SourseUrl + image;
+                        return this.source.sourceUrl + image;
                     }
                     return this.Default.HeadImage[gender];
                 },
@@ -199,13 +199,13 @@
                 var self = this;
                 $.ajax({
                     type: "GET",
-                    url: "/Home/GetSourseData",
+                    url: "/Home/GetsourceData",
                     dataType: "json",
                     success: function (data) {
-                        console.log('SourseFromRedis:' + data.SourseFromRedis);
-                        self.Sourse = data.Data;
-                        console.log('CompletePercent:' + self.Sourse.CompletePercent);
-                        self.$indicatorContainer.animate(self.Sourse.CompletePercent);
+                        console.log('sourceFromRedis:' + data.sourceFromRedis);
+                        self.source = data.Data;
+                        console.log('CompletePercent:' + self.source.CompletePercent);
+                        self.$indicatorContainer.animate(self.source.CompletePercent);
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         console.log(textStatus);

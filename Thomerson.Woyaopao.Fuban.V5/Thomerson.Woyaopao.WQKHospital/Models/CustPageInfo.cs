@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Thomerson.Woyaopao.Core.Model;
+using Thomerson.Woyaopao.Model;
 
 namespace Thomerson.Woyaopao.WQKHospital.Models
 {
-    public class PageInfo : DataTransfer
+    public class CustPageInfo : PageInfo
     {
         /// <summary>
         /// 累计跑量
@@ -16,12 +16,12 @@ namespace Thomerson.Woyaopao.WQKHospital.Models
         /// <summary>
         /// 男子组  top50
         /// </summary>
-        public List<MemberInfo> Male { get; set; }
+        public List<Member> Male { get; set; }
 
         /// <summary>
         /// 女子组 top50
         /// </summary>
-        public List<MemberInfo> Female { get; set; }
+        public List<Member> Female { get; set; }
 
     }
 }

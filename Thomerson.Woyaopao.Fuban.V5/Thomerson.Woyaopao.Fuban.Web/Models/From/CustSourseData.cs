@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Thomerson.Woyaopao.Core.Model
+namespace Thomerson.Woyaopao.Model
 {
-    public class MemberInfo : PersonBase
+    public class sourceData: Source
     {
-        public double total { get; set; }
+        public DataInfo data { get; set; }
     }
 }

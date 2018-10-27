@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
-
+using Newtonsoft.Json;
 
 namespace Thomerson.Woyaopao.Core
 {
@@ -34,11 +34,11 @@ namespace Thomerson.Woyaopao.Core
             }
         }
 
-        public static string Redis_SourseDataKey
+        public static string Redis_sourceDataKey
         {
             get
             {
-                return ConfigurationManager.AppSettings["Redis_SourseDataKey"].ToString();
+                return ConfigurationManager.AppSettings["Redis_sourceDataKey"].ToString();
             }
         }
 
@@ -71,35 +71,75 @@ namespace Thomerson.Woyaopao.Core
         }
 
         /// <summary>
-        /// 获取sourse的间隔时间
+        /// 获取source的间隔时间
         /// </summary>
-        public static int Woyaopao_Sourse_Timespan
+        public static int Woyaopao_source_Timespan
         {
             get
             {
-                return int.Parse(ConfigurationManager.AppSettings["Woyaopao_Sourse_Timespan"]);
+                return int.Parse(ConfigurationManager.AppSettings["Woyaopao_source_Timespan"]);
             }
         }
 
         /// <summary>
         /// 文件(头像)地址
         /// </summary>
-        public static string Woyaopao_SourseUrl
+        public static string sourceUrl
         {
             get
             {
-                return ConfigurationManager.AppSettings["Woyaopao_SourseUrl"];
+                return ConfigurationManager.AppSettings["Woyaopao_sourceUrl"];
             }
         }
 
         /// <summary>
         /// 报名链接
         /// </summary>
-        public static string Woyaopao_ApplyUrl
+        public static string ApplyUrl
         {
             get
             {
                 return ConfigurationManager.AppSettings["Woyaopao_ApplyUrl"];
+            }
+        }
+        public static string sourceDataUri
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["Woyaopao__DataUri"].ToString();
+            }
+        }
+
+        /// <summary>
+        /// redis 设置过期时间
+        /// </summary>
+        public static int Redis_Fuban_Overtime
+        {
+            get
+            {
+                return int.Parse(ConfigurationManager.AppSettings["Redis_Fuban_Overtime"]);
+            }
+        }
+
+        /// <summary>
+        /// 获取source的间隔时间
+        /// </summary>
+        public static int source_Timespan
+        {
+            get
+            {
+                return int.Parse(ConfigurationManager.AppSettings["Woyaopao__source_Timespan"]);
+            }
+        }
+
+        /// <summary>
+        /// 文件(头像)地址
+        /// </summary>
+        public static string Woyaopao_sourceUrl
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["Woyaopao__sourceUrl"];
             }
         }
 

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Thomerson.Woyaopao.Core.WQKHospital.To
+namespace Thomerson.Woyaopao.Model
 {
-    public class Team
+    public class MemberInfo : CustUserInfo
     {
-
+        public double total { get; set; }
     }
 }

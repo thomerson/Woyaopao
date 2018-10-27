@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using Thomerson.Woyaopao.Core;
-using Thomerson.Woyaopao.Core.Model;
+using Thomerson.Woyaopao.Model;
 
 namespace Thomerson.Woyaopao.Fuban
 {
@@ -20,7 +20,7 @@ namespace Thomerson.Woyaopao.Fuban
             }
         }
 
-        public static SourseData GetDataFromSource()
+        public static sourceData GetDataFromSource()
         {
             var result = string.Empty;
             try
@@ -30,7 +30,7 @@ namespace Thomerson.Woyaopao.Fuban
 
                 result = ReplaceSpecialChar4Json(result);
                 //Logger.Default.Info(result);
-                var model = JsonConvert.DeserializeObject<SourseData>(result);
+                var model = JsonConvert.DeserializeObject<sourceData>(result);
                 return model;
             }
             catch (Exception ex)
@@ -42,19 +42,19 @@ namespace Thomerson.Woyaopao.Fuban
 
         }
 
-        public static DataTransfer Sourse2Transfer(SourseData sourse)
+        public static DataTransfer source2Transfer(sourceData source)
         {
             try
             {
-                if (sourse.status != 1)
+                if (source.status != 1)
                 {
-                    Logger.Default.Info(string.Format("statue:{0};msg:{1}", sourse.status, sourse.msg));
+                    Logger.Default.Info(string.Format("statue:{0};msg:{1}", source.status, source.msg));
                 }
-                var runinfo = sourse.data.runInfo;
+                var runinfo = source.data.runInfo;
 
-                var userinfos = sourse.data.userInfo;
+                var userinfos = source.data.userInfo;
 
-                var teaminfos = sourse.data.teamsInfo;
+                var teaminfos = source.data.teamsInfo;
 
                 var top100 = new List<MemberInfo>();
 
@@ -79,22 +79,22 @@ namespace Thomerson.Woyaopao.Fuban
                             top100.Add(new MemberInfo()
                             {
                                 //order = i + 1,
-                                name = user?.name,
-                                headimg = user?.headimg,
+                                matchapplypeoplename = user?.matchapplypeoplename,
+                                headpath = user?.headpath,
                                 total = Math.Round(order[i].distance, 2)
                             });
                         }
 
-                        if (!string.IsNullOrWhiteSpace(user.teamInfoId) && teams.ContainsKey(user.teamInfoId))
+                        if (!string.IsNullOrWhiteSpace(user.traminfoid) && teams.ContainsKey(user.traminfoid))
                         {
-                            var team = teams[user.teamInfoId];
+                            var team = teams[user.traminfoid];
                             team.total = team.total + order[i].distance;
-                            teams[user.teamInfoId] = team;
+                            teams[user.traminfoid] = team;
                         }
                     }
                 }
 
-                return new PageInfo()
+                return new CustPageInfo()
                 {
                     CompleteTotal = Math.Round(total, 0),
                     Teams = teams.Select(s => new Team() { traminfoid = s.Key, name = s.Value?.name, total = Math.Round(s.Value.total, 2) }).OrderByDescending(o => o.total).ToList(),
@@ -111,47 +111,13 @@ namespace Thomerson.Woyaopao.Fuban
             }
         }
 
-        public static PersonInfoInRedis GetPersonInfo(string userid, List<UserInfo> userinfos)
-        {
-            var userKey = string.Format(Redis_UserId, userid);
-            PersonInfoInRedis person = null;
 
-            var user = string.Empty;
-            if (WoyaopaoConfig.UseRedis)
-            {
-                user = AliRedisClient.getRedisConn().GetDatabase().StringGet(userKey);
-            }
-
-            if (string.IsNullOrWhiteSpace(user))
-            {
-                var userinfo = userinfos.Where(s => s.userid == userid).FirstOrDefault();
-                if (userinfo != null)
-                {
-                    person = new PersonInfoInRedis()
-                    {
-                        headimg = userinfo.headpath,
-                        name = userinfo.nickname,
-                        gender = userinfo.gender,
-                        teamInfoId = userinfo.traminfoid
-                    };
-                    if (WoyaopaoConfig.UseRedis)
-                    {
-                        AliRedisClient.getRedisConn().GetDatabase().StringSet(userKey, JsonConvert.SerializeObject(person));
-                    }
-                }
-            }
-            else
-            {
-                person = JsonConvert.DeserializeObject<PersonInfoInRedis>(user);
-            }
-            return person;
-        }
 
         public static void ServiceTimer()
         {
 
             //每30秒执行一次  
-            var timespan = Woyaopao_Sourse_Timespan;
+            var timespan = Woyaopao_source_Timespan;
             var t = new System.Timers.Timer(timespan);
 
             //设置是执行一次（false）还是一直执行(true)；  
@@ -159,27 +125,27 @@ namespace Thomerson.Woyaopao.Fuban
             //是否执行System.Timers.Timer.Elapsed事件；  
             t.Enabled = true;
             //到达时间的时候执行事件(theout方法)；  
-            t.Elapsed += new System.Timers.ElapsedEventHandler(SetSourse);
+            t.Elapsed += new System.Timers.ElapsedEventHandler(Setsource);
         }
 
-        private static void SetSourse(object source, System.Timers.ElapsedEventArgs e)
+        private static void Setsource(object source, System.Timers.ElapsedEventArgs e)
         {
-            SetSourse();
+            Setsource();
         }
 
-        public static void SetSourse()
+        public static void Setsource()
         {
             try
             {
-                Console.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " start get sourse data");
-                var sourse = GetDataFromSource();
+                Console.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " start get source data");
+                var source = GetDataFromSource();
                 Console.WriteLine("geted");
-                var entity = Sourse2Transfer(sourse);
+                var entity = source2Transfer(source);
                 Console.WriteLine("transfer");
                 var json = JsonConvert.SerializeObject(entity);
                 Console.WriteLine("write into redis");
-                var sourseKey = Redis_SourseDataKey;
-                AliRedisClient.getRedisConn().GetDatabase().StringSet(sourseKey, json);
+                var sourceKey = Redis_sourceDataKey;
+                AliRedisClient.getRedisConn().GetDatabase().StringSet(sourceKey, json);
                 Console.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " end");
 
                 Console.WriteLine("*********************************");
@@ -192,12 +158,12 @@ namespace Thomerson.Woyaopao.Fuban
             }
         }
 
-        public static void GetSourseFromRedis()
+        public static void GetsourceFromRedis()
         {
             try
             {
-                var sourseKey = Redis_SourseDataKey;
-                var result = AliRedisClient.getRedisConn().GetDatabase().StringGet(sourseKey);
+                var sourceKey = Redis_sourceDataKey;
+                var result = AliRedisClient.getRedisConn().GetDatabase().StringGet(sourceKey);
             }
             catch (Exception ex)
             {
@@ -225,6 +191,36 @@ namespace Thomerson.Woyaopao.Fuban
             //json = System.Text.RegularExpressions.Regex.Replace(json, @"[\n\r]", "");
             //json = json.Trim();
             return json;
+        }
+
+        private static CustUserInfo GetPersonInfo(string userid, List<CustUserInfo> userinfos)
+        {
+            var userKey = string.Format(Redis_UserId, userid);
+            CustUserInfo person = null;
+
+            var user = string.Empty;
+            if (WoyaopaoConfig.UseRedis)
+            {
+                user = AliRedisClient.getRedisConn().GetDatabase().StringGet(userKey);
+            }
+
+            if (string.IsNullOrWhiteSpace(user))
+            {
+                var userinfo = userinfos.Where(s => s.userid == userid).FirstOrDefault();
+                if (userinfo != null)
+                {
+                    person = userinfo;
+                    if (WoyaopaoConfig.UseRedis)
+                    {
+                        AliRedisClient.getRedisConn().GetDatabase().StringSet(userKey, JsonConvert.SerializeObject(person));
+                    }
+                }
+            }
+            else
+            {
+                person = JsonConvert.DeserializeObject<CustUserInfo>(user);
+            }
+            return person;
         }
     }
 }
