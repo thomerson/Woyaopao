@@ -106,7 +106,7 @@ namespace Thomerson.Woyaopao.Core
         {
             get
             {
-                return ConfigurationManager.AppSettings["Woyaopao__DataUri"].ToString();
+                return ConfigurationManager.AppSettings["Woyaopao_DataUri"].ToString();
             }
         }
 

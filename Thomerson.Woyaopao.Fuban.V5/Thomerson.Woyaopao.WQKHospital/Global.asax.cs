@@ -14,7 +14,12 @@ namespace Thomerson.Woyaopao.WQKHospital
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            Core.Scheduler.Start("XQKHospital");
+            if (Core.WoyaopaoConfig.UseRedis)
+            {
+                Core.Logger.Default.Info("开始执行计划任务");
+                //执行计划任务
+                Core.Scheduler.Start("XQKHospital");
+            }
         }
     }
 }

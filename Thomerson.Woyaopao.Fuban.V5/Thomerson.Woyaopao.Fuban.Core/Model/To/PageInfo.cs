@@ -9,12 +9,16 @@ namespace Thomerson.Woyaopao.Model
 {
     public class PageInfo
     {
-        /// <summary>
-        /// 活动总人数
-        /// </summary>
-        public int TotalMember { get; set; }
 
-        public string sourceUrl
+        /// <summary>
+        /// 总里程
+        /// </summary>
+        public double TotalInstance { get; set; }
+
+        /// <summary>
+        /// 头像地址
+        /// </summary>
+        public string SourceUrl
         {
             get
             {
@@ -22,6 +26,9 @@ namespace Thomerson.Woyaopao.Model
             }
         }
 
+        /// <summary>
+        /// 报名地址
+        /// </summary>
         public string ApplyUrl
         {
             get

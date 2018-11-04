@@ -1,0 +1,54 @@
+﻿{
+  "data": {
+    "runInfo": [
+      {
+        "distance": "4.39",
+        "modeid": "6688c1ae45114324ab1dded89b17fc05",
+        "runtime": "2018-09-11",
+        "updatetime": "2018-09-11 08:17:01",
+        "userid": "8a99acf7650d4e020166a3bcfab64f5d",
+        "usetime": "78"
+      },
+      {
+        "distance": "4.39",
+        "modeid": "6688c1ae45114324ab1dded89b17fc05",
+        "runtime": "2018-09-11",
+        "updatetime": "2018-09-11 08:17:01",
+        "userid": "8a99acf7650d4e020166a3bcfab64f5d",
+        "usetime": "78"
+      },
+      {
+        "distance": "4.39",
+        "modeid": "6688c1ae45114324ab1dded89b17fc05",
+        "runtime": "2018-09-11",
+        "updatetime": "2018-09-11 08:17:01",
+        "userid": "8a99acf7650d4e020166ab587d15505e",
+        "usetime": "78"
+      }
+    ],
+    "userInfo": [
+      {
+        "activityappyid": "fa4ba84ffb594fe3b7cd078f8384c2ad",
+        "applypeoplename": "翁宇辉",
+        "gender": "1",
+        "headpath": null,
+        "nickname": "test",
+        "tel": "13888888888",
+        "userid": "8a99acf7650d4e020166a3bcfab64f5d",
+        "团队名称": "管理二部门工会"
+      },
+      {
+        "activityappyid": "fcb87e3a47524b89b1578bfbaa5be537",
+        "applypeoplename": "孙攀",
+        "gender": "0",
+        "headpath": null,
+        "nickname": "testtest",
+        "tel": "13999999999",
+        "userid": "8a99acf7650d4e020166ab587d15505e",
+        "团队名称": "医技三部门工会"
+      }
+    ]
+  },
+  "msg": "成功",
+  "status": "1"
+}

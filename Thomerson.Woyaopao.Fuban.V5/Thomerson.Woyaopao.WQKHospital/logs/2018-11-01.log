@@ -1,0 +1,6 @@
+2018-11-01 10:12:36.2649 INFO   RuntimeMethodHandle.InvokeMethod => MvcApplication.Application_Start => Logger.Info 
+ 开始执行计划任务 
+ 
+2018-11-01 10:12:36.5105 INFO   JobRunShell.Run => RequestJob.Execute => Logger.Info 
+ 请求时间:11/1/2018 10:12:36 AM 
+ 

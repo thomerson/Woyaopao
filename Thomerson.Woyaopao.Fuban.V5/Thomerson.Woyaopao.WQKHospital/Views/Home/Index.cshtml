@@ -1,0 +1,314 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>奔跑榜</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+    <div id="App">
+        <!--初始页面-->
+        <div v-show="ShowFlag==1">
+            <div class="head_banner">
+                <img src="/images/banner.png" />
+            </div>
+
+            <div class="content clf">
+                <div class="check_btn">
+                    <span>
+                        <a href="javascript:;" @@click="showTeam(true)" :class="teamVisible?'active':''">团队</a>
+                        <a href="javascript:;" @@click="showTeam(false)" :class="teamVisible?'':'active'">个人</a>
+                    </span>
+                </div>
+                <!--团队-->
+                <div class="team_box" v-show="!!teamVisible">
+                    <div class="team_content">
+                        <!--top 3-->
+                        <ul class="first_three ">
+                            <li v-for="(item,index) in source.Top3" @@click="showTeamDetail(item,index)">
+                                <div :class="'top top_'+Num2char(index+1)">
+                                    <!--<img src="/images/top_img.png" class="user_img" />-->
+                                    <img :src="'/images/top_'+Num2char(index+1)+'.png'" class="user_img" />
+                                </div>
+                            </li>
+                        </ul>
+                        <!--top 3 detail-->
+                        <ul class="first_txt clf">
+                            <li v-for="(item,index) in sortTop3(source.Top3)" @@click="showTeamDetail(item,index)">
+                                <p>
+                                    {{item.name}}<span>{{item.total.toFixed(2)}}<i>KM</i></span>
+                                </p>
+                            </li>
+                        </ul>
+                        <div class="fenge">
+                            <img src="/images/gd.png" />
+                        </div>
+                        <!--团队3名以后-->
+                        <div class="rank_list">
+                            <ul>
+                                <li v-for="(item,index) in source.Teams" v-if="index>2" @@click="showTeamDetail(item,index)">
+                                    <span class="rankfont rank_num">{{index+1}}.</span>
+                                    <span class="rankfont rank_name">{{item.name}}</span>
+                                    <span class="rankfont rank_member">{{item.TotalMembers}}人</span>
+                                    <span class="rankfont rank_kim">{{item.total.toFixed(2)}}<i>KM</i></span>
+                                </li>
+                            </ul>
+                            <div class="fenge"><img src="/images/gd.png" /></div>
+                            <div class="tatal">
+                                <span class="fl">累计：</span>
+                                <span class="people_num">人数&nbsp;|&nbsp;{{source.TotalMember}}<i>人</i></span>
+                                <span class="mileage">里程&nbsp;|&nbsp;{{source.TotalInstance.toFixed(2)}}<i>km</i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--个人-->
+                <div class="personal_box" v-show="!teamVisible">
+                    <div class="team_fenl">
+                        <a href="javascript:;" @@click="showMale(true)" :class="teamVisible?'active':''">男子组</a>
+                        <a href="javascript:;" @@click="showMale(false)" :class="teamVisible?'':'active'">女子组</a>
+                    </div>
+                    <div class="team_in">
+                        <!--男子组-->
+                        <div class="man_team team_cont" v-show="!!maleVisible">
+                            <div class="rank_list">
+                                <ul>
+                                    <li v-for="(item,index) in source.Male">
+                                        <span class="rank_num">
+                                            <img v-if="index<3" :src="'/images/top_'+Num2char(index+1)+'.png'" />
+                                            <span v-else>{{index+1}}.</span>
+                                        </span>
+                                        <span class="rank_img top">
+                                            <img :src="GetUserImage(item.headpath,item.gender)" class="user_img" />
+                                        </span>
+                                        <span class="rank_name">{{item.nickname}}</span>
+                                        <span class="rank_kim">{{item.total.toFixed(2)}}<i>KM</i></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--女子组-->
+                        <div class="woman_team team_cont" v-show="!maleVisible">
+                            <div class="rank_list">
+                                <ul>
+                                    <li v-for="(item,index) in source.Female">
+                                        <span class="rank_num">
+                                            <img v-if="index<3" :src="'/images/top_'+Num2char(index+1)+'.png'" />
+                                            <span v-else>{{index+1}}.</span>
+                                        </span>
+                                        <span class="rank_img top">
+                                            <img :src="GetUserImage(item.headpath,item.gender)" class="user_img" />
+                                        </span>
+                                        <span class="rank_name">{{item.nickname}}</span>
+                                        <span class="rank_kim">{{item.total.toFixed(2)}}<i>KM</i></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="joinus">
+                    <a href="javascript:;" @@click="showRule(true)" class="ac_rule"><span>活动规则</span></a>
+                    <a :href="source.ApplyUrl" class="sign_up"><span>立即报名</span></a>
+                </div>
+
+            </div>
+            <div class="footer">
+                <img src="/images/footer_img_02.png" width="100%" />
+            </div>
+
+            <!--活动规则弹窗-->
+            <div class="pop" v-show="!!ruleVisible">
+                <div class="pop_main">
+                    <img src="/images/rule_img.png" width="100%" class="pop_head" />
+                    <div class="pop_content">
+                        <span class="content_top"></span>
+                        <div class="middle">
+                            <h3>活动规则</h3>
+                            <div class="txt">
+                                <p>
+                                    1、参与此次活动的职工可根据自己的时间自由安排户外健步走活动，参与者健步时需携带手机并打开手机 GPS 定位设置，定位成功后打开“我要跑” APP按下“Go”键开始健步，完成健步后按下“结束”并上传健步的数据。参与者可采取走路或者慢跑的方式完成健步。APP 会根据参与活动的健步距离累积到相应个人、单位总的健步距离上，参与者每天健步距离低于2公里不参与健步距离累积，高于 10 公里按照 10 公里累积。平均速度低于12分钟/公里或者高于5分钟/公里的数据，均不作为有效数据。若遇健步距离相同的情况，则依次按照健步时间、配速情况进行排名（相同距离下，时间越短排名越靠前；配速越高排名越靠前）。
+                                </p><p>
+                                    2、APP 按要求进行两类排名。第一类：个人（男、女）排名；第二类：部门工会排名（累积计算部门工会所有参与人的总成绩）。
+                                </p> <p>
+                                    3、参赛人员可在 APP 实时查看个人排名、部门工会排名。
+                                </p><p>
+                                    4、所有参加人员必须实名登陆，以备接受检查。
+                                </p> <p>
+                                    5、健步仅允许采用走路或者慢跑形式完成，禁止借助任何其他交通工具完成。配速在5分钟/公里到12分钟/公里的视为有效速度。
+                                </p><p>
+                                    6、“线上健步走”旨在进一步增强医务职工的健身意识，倡导积极、阳光、健康、向上的生活方式，参与人员每次参加活动需做好自身健康评估，量力而行。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="close_btn" @@click="showRule(false)">
+                        <img src="/images/close.png" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!--团队详细-->
+        <div v-show="ShowFlag==2">
+            <div class="side_top">
+                <!--返回首页-->
+                <a class="back_home" @@click="backHome" href="javascript:;"></a>
+                <!--head-->
+                <div class="order_name">
+                    <span>
+                        {{team.name}}
+                    </span>
+                </div>
+                <div class="lj_total">
+                    <ul class="clf" :Class="team.index<3?'clf':'clf nohonor'">
+                        <li>
+                            <p>{{team.Members.length}}<i>人</i></p>
+                            <span>团队总人数</span>
+                        </li>
+                        <li>
+                            <div v-if="team.index<3" class="team_honor">
+                                <img :src="'/images/top_'+Num2char(team.index+1)+'.png'" class="user_img" />
+                            </div>
+                            <span v-else></span>
+                        </li>
+                        <li>
+                            <p>{{team.total.toFixed(2)}}<i>km</i></p>
+                            <span>累计跑量</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="ranking_list">
+                <ul>
+                    <li v-for="(item,index) in team.Members">
+                        <span class="honor_img">
+                            <img :src="GetUserImage(item.headpath,item.gender)" class="user_img" />
+                        </span>
+                        <span class="honor_name">{{item.nickname}} <br><a>{{item.total.toFixed(2)}}<i>km</i></a></span>
+                        <span class="honor_order">{{index+1}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/Scripts/vue.min.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el: '#App',
+            data: {
+                ShowFlag: 1,
+                source: {
+                    TotalInstance: 0,
+                    SourceUrl: '',
+                    ApplyUrl: '',
+                    TotalMember: 0,
+                    Teams: [],
+                    Top3: [],
+                    Male: [],
+                    Female: []
+                },
+                Default: {
+                    HeadImage: {
+                        0: '../images/default_woman.png',
+                        1: '../images/default_man.png'
+                    }
+                },
+                team: {
+                    total: 0,
+                    name: '',
+                    Members: [],
+                    index: 0
+                },
+                teamVisible: true,
+                maleVisible: true,
+                ruleVisible: false
+            },
+            methods: {
+                GetUserImage: function (image, gender) {
+                    if (image) {
+                        return this.source.SourceUrl + image;
+                    }
+                    return this.Default.HeadImage[gender];
+                },
+                Num2char: function (index) {
+                    var tem = {
+                        1: 'one',
+                        2: 'two',
+                        3: 'three'
+                    }
+                    return tem[index];
+                },
+                showTeam: function (flag) {
+                    this.teamVisible = !!flag;
+                },
+                showMale: function (flag) {
+                    this.maleVisible = !!flag;
+                },
+                showRule: function (flag) {
+                    this.ruleVisible = !!flag;
+                },
+                showTeamDetail: function (team, index) {
+                    this.ShowFlag = 2;
+                    this.team = team;
+                    this.team.index = index;
+                },
+                backHome: function () {
+                    this.ShowFlag = 1;
+                },
+                sortTop3: function (top3) {
+                    var arr = [];
+                    if (Array.isArray(top3) && top3.length === 3) {
+                        arr.push(top3[1]);
+                        arr.push(top3[0]);
+                        arr.push(top3[2]);
+                    }
+                    return arr;
+                }
+            },
+            created: function () {
+                var self = this;
+                $.ajax({
+                    type: "GET",
+                    url: "/Home/RunInfo?stamp=" + Date.parse(new Date()),
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data);
+                        console.log('sourceFromRedis:' + data.sourceFromRedis);
+                        if (data.Msg) {
+                            console.log(data.Msg);
+                            return false;
+                        }
+                        self.source = data.Data;
+                        console.log(self.source);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(textStatus);
+                        console.log(errorThrown);
+                    },
+                    beforeSend: function () {
+                        //loading
+                    },
+                    complete: function () {
+                        //no loading
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

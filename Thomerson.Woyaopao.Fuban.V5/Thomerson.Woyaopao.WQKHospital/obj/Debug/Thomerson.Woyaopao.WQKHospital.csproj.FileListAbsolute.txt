@@ -30,3 +30,11 @@ C:\git\Woyaopao\Thomerson.Woyaopao.Fuban.V5\Thomerson.Woyaopao.WQKHospital\bin\Q
 C:\git\Woyaopao\Thomerson.Woyaopao.Fuban.V5\Thomerson.Woyaopao.WQKHospital\bin\Quartz.xml
 C:\git\Woyaopao\Thomerson.Woyaopao.Fuban.V5\Thomerson.Woyaopao.WQKHospital\bin\StackExchange.Redis.xml
 C:\git\Woyaopao\Thomerson.Woyaopao.Fuban.V5\Thomerson.Woyaopao.WQKHospital\bin\NLog.xml
+C:\git\Woyaopao\Thomerson.Woyaopao.Fuban.V5\Thomerson.Woyaopao.WQKHospital\bin\Common.Logging.Core.dll
+C:\git\Woyaopao\Thomerson.Woyaopao.Fuban.V5\Thomerson.Woyaopao.WQKHospital\bin\Common.Logging.dll
+C:\git\Woyaopao\Thomerson.Woyaopao.Fuban.V5\Thomerson.Woyaopao.WQKHospital\bin\Newtonsoft.Json.dll
+C:\git\Woyaopao\Thomerson.Woyaopao.Fuban.V5\Thomerson.Woyaopao.WQKHospital\bin\Common.Logging.pdb
+C:\git\Woyaopao\Thomerson.Woyaopao.Fuban.V5\Thomerson.Woyaopao.WQKHospital\bin\Common.Logging.xml
+C:\git\Woyaopao\Thomerson.Woyaopao.Fuban.V5\Thomerson.Woyaopao.WQKHospital\bin\Common.Logging.Core.pdb
+C:\git\Woyaopao\Thomerson.Woyaopao.Fuban.V5\Thomerson.Woyaopao.WQKHospital\bin\Common.Logging.Core.xml
+C:\git\Woyaopao\Thomerson.Woyaopao.Fuban.V5\Thomerson.Woyaopao.WQKHospital\bin\Newtonsoft.Json.xml

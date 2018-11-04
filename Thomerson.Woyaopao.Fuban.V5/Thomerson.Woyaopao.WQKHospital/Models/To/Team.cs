@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Thomerson.Woyaopao.Model;
 
 namespace Thomerson.Woyaopao.WQKHospital
 {
@@ -10,12 +7,18 @@ namespace Thomerson.Woyaopao.WQKHospital
     {
         public string name { get; set; }
         /// <summary>
-        /// 团队人数
-        /// </summary>
-        public int memberCount { get; set; }
-        /// <summary>
         /// 总里程数
         /// </summary>
         public double total { get; set; }
+
+        /// <summary>
+        /// 团队成员
+        /// </summary>
+        public List<Member> Members { get; set; }
+
+        /// <summary>
+        /// 团队总人数
+        /// </summary>
+        public int TotalMembers { get; set; }
     }
 }
