@@ -1,0 +1,118 @@
+[[[自动注册扩展缓存完成]]]
+[2018/11/22 01:14:27.4543]
+[线程：1]
+注册总用时：0ms
+自动扫描程序集：0个
+扩展缓存：
+
+[[[微信扩展缓存注册完成]]]
+[2018/11/22 01:14:27.4803]
+[线程：1]
+微信扩展缓存注册总用时：0ms
+扩展缓存：Senparc.Weixin.Cache.LocalContainerCacheStrategy
+
+[[[RegisterApiBind() 自动扫描程序集异常：Senparc.Weixin.MP, Version=16.5.0.0, Culture=neutral, PublicKeyToken=null]]]
+[2018/11/22 01:14:28.1463]
+[线程：1]
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 Senparc.NeuChar.ApiBind.ApiBindInfoCollection.Add(MethodInfo method, ApiBindAttribute apiBindAttr)
+   在 Senparc.NeuChar.Register.RegisterApiBind()
+
+[[[WeixinException]]]
+[2018/11/22 01:14:30.8613]
+[线程：6]
+	WeixinException
+	AccessTokenOrAppId：
+	Message：ContainerBag 更新时，ey 不能为空！类型：Senparc.Weixin.MP.Containers.AccessTokenBag
+	StackTrace：
+
+[[[自动注册扩展缓存完成]]]
+[2018/11/22 01:52:03.4913]
+[线程：1]
+注册总用时：0ms
+自动扫描程序集：0个
+扩展缓存：
+
+[[[微信扩展缓存注册完成]]]
+[2018/11/22 01:52:03.5243]
+[线程：1]
+微信扩展缓存注册总用时：0ms
+扩展缓存：Senparc.Weixin.Cache.LocalContainerCacheStrategy
+
+[[[RegisterApiBind() 自动扫描程序集异常：Senparc.Weixin.MP, Version=16.5.0.0, Culture=neutral, PublicKeyToken=null]]]
+[2018/11/22 01:52:04.4873]
+[线程：1]
+System.ArgumentException: 已添加了具有相同键的项。
+   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 Senparc.NeuChar.ApiBind.ApiBindInfoCollection.Add(MethodInfo method, ApiBindAttribute apiBindAttr)
+   在 Senparc.NeuChar.Register.RegisterApiBind()
+
+[[[自动注册扩展缓存完成]]]
+[2018/11/22 01:56:14.2823]
+[线程：1]
+注册总用时：0ms
+自动扫描程序集：0个
+扩展缓存：
+
+[[[微信扩展缓存注册完成]]]
+[2018/11/22 01:56:14.3313]
+[线程：1]
+微信扩展缓存注册总用时：0ms
+扩展缓存：Senparc.Weixin.Cache.LocalContainerCacheStrategy
+
+[[[RegisterApiBind() 自动扫描程序集异常：Senparc.Weixin.MP, Version=16.4.2.0, Culture=neutral, PublicKeyToken=null]]]
+[2018/11/22 01:56:15.1173]
+[线程：1]
+System.Reflection.ReflectionTypeLoadException: 无法加载一个或多个请求的类型。有关更多信息，请检索 LoaderExceptions 属性。
+   在 System.Reflection.RuntimeModule.GetTypes(RuntimeModule module)
+   在 System.Reflection.RuntimeModule.GetTypes()
+   在 System.Reflection.Assembly.GetTypes()
+   在 Senparc.NeuChar.Register.RegisterApiBind()
+
+[[[自动注册扩展缓存完成]]]
+[2018/11/22 02:03:10.5343]
+[线程：1]
+注册总用时：0ms
+自动扫描程序集：0个
+扩展缓存：
+
+[[[微信扩展缓存注册完成]]]
+[2018/11/22 02:03:10.5613]
+[线程：1]
+微信扩展缓存注册总用时：0ms
+扩展缓存：Senparc.Weixin.Cache.LocalContainerCacheStrategy
+
+[[[RegisterApiBind() 自动扫描程序集异常：Senparc.Weixin.MP, Version=16.4.2.0, Culture=neutral, PublicKeyToken=null]]]
+[2018/11/22 02:03:11.1363]
+[线程：1]
+System.Reflection.ReflectionTypeLoadException: 无法加载一个或多个请求的类型。有关更多信息，请检索 LoaderExceptions 属性。
+   在 System.Reflection.RuntimeModule.GetTypes(RuntimeModule module)
+   在 System.Reflection.RuntimeModule.GetTypes()
+   在 System.Reflection.Assembly.GetTypes()
+   在 Senparc.NeuChar.Register.RegisterApiBind()
+
+[[[自动注册扩展缓存完成]]]
+[2018/11/22 02:04:35.1973]
+[线程：1]
+注册总用时：0ms
+自动扫描程序集：0个
+扩展缓存：
+
+[[[微信扩展缓存注册完成]]]
+[2018/11/22 02:04:35.2333]
+[线程：1]
+微信扩展缓存注册总用时：0ms
+扩展缓存：Senparc.Weixin.Cache.LocalContainerCacheStrategy
+
+[[[RegisterApiBind() 自动扫描程序集异常：Senparc.Weixin.MP, Version=16.4.2.0, Culture=neutral, PublicKeyToken=null]]]
+[2018/11/22 02:04:35.7853]
+[线程：1]
+System.Reflection.ReflectionTypeLoadException: 无法加载一个或多个请求的类型。有关更多信息，请检索 LoaderExceptions 属性。
+   在 System.Reflection.RuntimeModule.GetTypes(RuntimeModule module)
+   在 System.Reflection.RuntimeModule.GetTypes()
+   在 System.Reflection.Assembly.GetTypes()
+   在 Senparc.NeuChar.Register.RegisterApiBind()
+

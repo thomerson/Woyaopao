@@ -1,0 +1,223 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="mobileoptimized" content="0" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
+    <link href="/css/wm.css" rel="stylesheet">
+    <meta name="keywords" content="" />
+    <meta name="description" content="精彩赛事，相约青浦西虹桥" />
+    <title>2018西虹桥中核热力跑</title>
+    <style>
+        #layout {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            overflow: hidden;
+            background: black;
+        }
+
+        .page, .page-init {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+
+        .page-init {
+            z-index: 10;
+        }
+
+        .lock {
+            pointer-events: none;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="~/images/share_icon.png" alt="">
+    </div>
+    <audio loop></audio>
+    <div class="music-logo"></div>
+    <div class="page-loading">
+        <ul class="border">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div id="layout">
+        <div class="page page-0">
+            <img src="/images/page_one_bg.png" class="back-img">
+            <img src="/images/cricle.png" class="cricle-img">
+            <!--公共动画start-->
+            <img src="/images/head_top_txt.png" class="head-top">
+            <img src="/images/right_top_txt.png" class="right-top">
+            <img src="/images/left_txt.png" class="left-img">
+            <img src="/images/bottom_left_txt.png" class="bottom-left">
+            <img src="/images/left_top_img.png" class="left-top-img">
+            <img src="/images/left_down_img.png" class="left-down-img">
+            <img src="/images/right_down_img.png" class="right-down-img">
+            <!--公共动画end-->
+            <img src="/images/page_one_01.png" class="page-logo">
+            <img src="/images/page_one_02.png" class="page-title">
+            <img src="/images/line.png" class="page-line">
+            <img src="/images/page_one_txt.png" class="page0-title">
+            <div class="arrow"></div>
+        </div>
+        <div class="page page-1">
+            <img src="/images/page_two_bg.png" class="back-img">
+            <div class="line-s"></div>
+            <!--公共动画start-->
+            <img src="/images/head_top_txt.png" class="head-top">
+            <img src="/images/right_top_txt.png" class="right-top">
+            <img src="/images/left_txt.png" class="left-img">
+            <img src="/images/bottom_left_txt.png" class="bottom-left page-7-center">
+            <img src="/images/left_top_img.png" class="left-top-img">
+            <img src="/images/left_down_img.png" class="left-down-img">
+            <img src="/images/right_down_img.png" class="right-down-img">
+            <!--公共动画end-->
+            <img src="/images/page_two_txt.png" class="page-logo-two">
+            <img src="/images/page_two_p.png" class="page-logo-two top-p">
+            <img src="/images/page_two_txt_l1.png" class="page-two-txt-1">
+            <img src="/images/page_two_txt_l2.png" class="page-two-txt-2">
+            <!--<img src="/images/page_two_img.png" class="page-two-img">-->
+            <div class="arrow"></div>
+        </div>
+        <div class="page page-2">
+            <img src="/images/page_three_bg.png" class="back-img">
+            <div class="line-s"></div>
+            <img src="/images/page_three_man.png" class="page-three-man">
+            <!--公共动画start-->
+            <img src="/images/head_top_txt.png" class="head-top">
+            <img src="/images/right_top_txt.png" class="right-top">
+            <img src="/images/left_txt.png" class="left-img">
+            <img src="/images/bottom_left_txt.png" class="bottom-left">
+            <img src="/images/left_top_img.png" class="left-top-img">
+            <img src="/images/left_down_img.png" class="left-down-img">
+            <img src="/images/right_down_img.png" class="right-down-img">
+            <!--公共动画end-->
+            <img src="/images/page_three_zz.png" class="page-three-zz">
+            <img src="/images/page_three_title.png" class="page-three-title">
+            <img src="/images/page_three_title_s.png" class="page-three-title-s">
+            <img src="/images/page_three_km.png" class="page-three-km">
+            <img src="/images/page_three_l1.png" class="page-three-l1">
+            <img src="/images/page_three_l2.png" class="page-three-l2">
+            <img src="/images/page_three_l3.png" class="page-three-l3">
+            <div class="arrow"></div>
+        </div>
+        <div class="page page-3">
+            <img src="/images/page_4_bg.png" class="back-img">
+            <div class="line-s"></div>
+            <!--公共动画start-->
+            <img src="/images/head_top_txt.png" class="head-top">
+            <img src="/images/right_top_txt.png" class="right-top">
+            <img src="/images/left_txt.png" class="left-img">
+            <img src="/images/bottom_left_txt.png" class="bottom-left">
+            <img src="/images/left_top_img.png" class="left-top-img">
+            <img src="/images/left_down_img.png" class="left-down-img">
+            <img src="/images/right_down_img.png" class="right-down-img">
+            <!--公共动画end-->
+            <img src="/images/page4_1.png" class="page-4-1">
+            <img src="/images/page4_2.png" class="page-4-2">
+            <img src="/images/page4_3.png" class="page-4-3">
+            <img src="/images/page4_4.png" class="page-4-4">
+            <div class="arrow"></div>
+        </div>
+        <div class="page page-4">
+            <img src="/images/page_7_bg.png" class="back-img">
+            <div class="line-s"></div>
+            <!--公共动画start-->
+            <img src="/images/head_top_txt.png" class="head-top">
+            <img src="/images/right_top_txt.png" class="right-top">
+            <img src="/images/left_txt.png" class="left-img">
+            <img src="/images/bottom_left_txt.png" class="bottom-left">
+            <img src="/images/left_top_img.png" class="left-top-img">
+            <img src="/images/left_down_img.png" class="left-down-img">
+            <img src="/images/right_down_img.png" class="right-down-img">
+            <!--公共动画end-->
+            <img src="/images/page_7_title.png" class="page-5-title">
+            <img src="/images/page_7_l1.png" class="page-5-l1">
+            <img src="/images/page_7_l2.png" class="page-5-l2">
+            <div class="arrow"></div>
+        </div>
+        <!--党建页面-->
+        <div class="page page-5">
+            <img src="/images/page_6_bg.png" class="back-img">
+            <div class="line-s"></div>
+            <!--公共动画start-->
+            <img src="/images/head_top_txt.png" class="head-top">
+            <img src="/images/right_top_txt.png" class="right-top">
+            <img src="/images/left_txt.png" class="left-img">
+            <img src="/images/bottom_left_txt.png" class="bottom-left">
+            <img src="/images/left_top_img.png" class="left-top-img">
+            <img src="/images/left_down_img.png" class="left-down-img">
+            <img src="/images/right_down_img.png" class="right-down-img">
+            <!--公共动画end-->
+            <img src="/images/page_6_title.png" class="page-6-title">
+            <img src="/images/page_6_title_l.png" class="page-6-title-l">
+            <img src="/images/page_6_title_n.png" class="page-6-title-n">
+            <div class="arrow"></div>
+        </div>
+        <div class="page page-6">
+            <img src="/images/page_5_bg.png" class="back-img">
+            <div class="line-s"></div>
+            <!--公共动画start-->
+            <img src="/images/head_top_txt.png" class="head-top">
+            <img src="/images/right_top_txt.png" class="right-top">
+            <img src="/images/left_txt.png" class="left-img">
+            <img src="/images/bottom_left_txt.png" class="bottom-left page-7-center">
+            <img src="/images/left_top_img.png" class="left-top-img">
+            <img src="/images/left_down_img.png" class="left-down-img">
+            <img src="/images/right_down_img.png" class="right-down-img">
+            <!--公共动画end-->
+            <img src="/images/page_5_title.png" class="page-7-title">
+            <img src="/images/page_5_title_l.png" class="page-7-title-l">
+            <img src="/images/page_5_title_n.png" class="page-7-title-n">
+            <a href="http://baoming.woyaopao.com/woyaopao/mobileAction.mp?action=getShare&modeid=c86fd68dc3b848aa8ffdb0393cb12f00&modetype=1&traminfoid=null&from=singlemessage" class="page-7-btn">
+                <img src="/images/page_5_btn.png">
+            </a>
+            <div class="arrow"></div>
+        </div>
+    </div>
+    <div id="template">
+        <!--地图页-->
+        <div data-template-id="page-map" class="page-map">
+            <div class="c-title-bar">
+                <div class="c-icon c-back" style="cursor: pointer;"></div>
+                <div class="c-line"></div>
+                <div class="c-caption">地图</div>
+            </div>
+            <div id="container"></div>
+        </div>
+    </div>
+    <script src="/js/zMobile.js"></script>
+    <script src="/js/zScrollPanel.js"></script>
+    <script src="/js/wmLib.js"></script>
+    <script src="/js/sphere.js"></script>
+    <script src="/js/wm.js"></script>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
+    <script src="/js/wm_f.js"></script>
+    <script charset="gbk" src="~/js/share.js"></script>
+
+</body>
+</html>
